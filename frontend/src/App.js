@@ -561,7 +561,7 @@ const MenuPage = () => {
 
       {/* Product Detail Modal */}
       <Dialog open={!!selectedProduct} onOpenChange={(open) => !open && setSelectedProduct(null)}>
-        <DialogContent className="max-w-md">
+        <DialogContent className="max-w-md z-50">
           {selectedProduct && (
             <>
               <DialogHeader>
