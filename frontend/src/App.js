@@ -606,7 +606,7 @@ const MenuPage = () => {
               </div>
 
               <DialogFooter>
-                <Button onClick={handleAddToCart} className="bg-red-600 hover:bg-red-700">
+                <Button onClick={handleAddToCart} className="bg-red-600 hover:bg-red-700 z-50">
                   Add to Cart
                 </Button>
               </DialogFooter>
