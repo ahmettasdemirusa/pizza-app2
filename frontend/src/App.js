@@ -63,12 +63,27 @@ const AuthProvider = ({ children }) => {
   }, [token]);
 
   const login = (userData, tokenData) => {
+    console.log('Login data received:', userData); // Debug log
     setUser(userData);
     setToken(tokenData);
     localStorage.setItem('token', tokenData);
+    localStorage.setItem('user', JSON.stringify(userData)); // Store user data
     axios.defaults.headers.common['Authorization'] = `Bearer ${tokenData}`;
     toast.success(`Welcome back, ${userData.full_name}!`);
   };
+
+  // Load user from localStorage on app start
+  useEffect(() => {
+    const storedUser = localStorage.getItem('user');
+    if (storedUser && token) {
+      try {
+        const userData = JSON.parse(storedUser);
+        setUser(userData);
+      } catch (error) {
+        console.error('Error parsing stored user data:', error);
+      }
+    }
+  }, [token]);
 
   const logout = () => {
     setUser(null);
