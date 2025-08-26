@@ -2071,7 +2071,7 @@ const AdminPage = () => {
                         <Input
                           value={size.name}
                           onChange={(e) => updateSize(index, 'name', e.target.value)}
-                          placeholder="Size name (e.g., Medium 12\")"
+                          placeholder="Size name (e.g., Medium 12 inch)"
                         />
                         <Input
                           type="number"
