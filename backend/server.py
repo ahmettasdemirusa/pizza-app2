@@ -417,44 +417,32 @@ async def initialize_sample_data():
             "is_featured": True
         },
         {
-            "name": "Buffalo Chicken Pizza", 
-            "description": "Chicken, cheddar, and buffalo sauce; no red sauce",
+            "name": "Deluxe Pizza",
+            "description": "Pepperoni, sausage, ham, bacon, mushrooms, onions, green peppers, black olives",
             "category_id": pizza_cat['id'],
-            "price": 21.95,
-            "image_url": "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38",
-            "ingredients": ["Buffalo chicken", "Cheddar cheese", "Buffalo sauce"],
+            "price": 23.95,
+            "image_url": "https://images.unsplash.com/photo-1595708684082-a173bb3a06c5",
+            "ingredients": ["Pepperoni", "Sausage", "Ham", "Bacon", "Mushrooms", "Onions", "Green peppers", "Black olives"],
             "sizes": [
-                {"name": "Medium 12\"", "price": 18.95},
-                {"name": "Large 14\"", "price": 21.95},
-                {"name": "Extra Large 18\"", "price": 23.95}
+                {"name": "Medium 12\"", "price": 20.95},
+                {"name": "Large 14\"", "price": 23.95},
+                {"name": "Extra Large 18\"", "price": 26.95}
             ],
             "is_featured": True
         },
         {
-            "name": "Meat Lovers Pizza",
-            "description": "Pepperoni, ham, and bacon",
+            "name": "Meat Lover's Pizza",
+            "description": "Pepperoni, ham, bacon",
             "category_id": pizza_cat['id'],
             "price": 22.95,
-            "image_url": "https://images.unsplash.com/photo-1593504049359-74330189a345",
-            "ingredients": ["Pepperoni", "Ham", "Bacon", "Mozzarella cheese"],
+            "image_url": "https://images.unsplash.com/photo-1628840042765-356cda07504e",
+            "ingredients": ["Pepperoni", "Ham", "Bacon"],
             "sizes": [
                 {"name": "Medium 12\"", "price": 19.95},
                 {"name": "Large 14\"", "price": 22.95},
                 {"name": "Extra Large 18\"", "price": 24.95}
             ],
             "is_featured": True
-        },
-        {
-            "name": "Deluxe Pizza",
-            "description": "Pepperoni, sausage, ham, bacon, mushrooms, onions, green peppers, and black olives",
-            "category_id": pizza_cat['id'],
-            "price": 23.95,
-            "ingredients": ["Pepperoni", "Sausage", "Ham", "Bacon", "Mushrooms", "Onions", "Green peppers", "Black olives"],
-            "sizes": [
-                {"name": "Medium 12\"", "price": 20.95},
-                {"name": "Large 14\"", "price": 23.95},
-                {"name": "Extra Large 18\"", "price": 26.95}
-            ]
         },
         {
             "name": "Hawaiian Pizza",
