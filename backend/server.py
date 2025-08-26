@@ -343,117 +343,169 @@ async def initialize_sample_data():
     
     # Create complete product data
     products_data = [
-        # PIZZAS
+        # PIZZAS (CORRECT SIZES: Medium, Large, Extra Large)
         {
-            "name": "Buffalo Chicken Pizza",
-            "description": "Spicy buffalo chicken with red onions and mozzarella cheese",
+            "name": "NY Cheese Pizza",
+            "description": "Classic New York style cheese pizza with our signature sauce and mozzarella",
             "category_id": pizza_cat['id'],
-            "price": 18.95,
-            "image_url": "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38",
-            "ingredients": ["Buffalo chicken", "Red onions", "Mozzarella cheese", "Buffalo sauce"],
+            "price": 18.95,  # Large price as default
+            "image_url": "https://images.unsplash.com/photo-1600628421066-f6bda6a7b976",
+            "ingredients": ["Mozzarella cheese", "Tomato sauce", "Fresh basil"],
             "sizes": [
-                {"name": "Small 10\"", "price": 14.95},
                 {"name": "Medium 12\"", "price": 16.95},
                 {"name": "Large 14\"", "price": 18.95},
-                {"name": "X-Large 16\"", "price": 20.95}
+                {"name": "Extra Large 18\"", "price": 20.95}
             ],
             "is_featured": True
         },
         {
-            "name": "NY Cheese Pizza",
-            "description": "Classic New York style cheese pizza with our signature sauce",
+            "name": "Buffalo Chicken Pizza", 
+            "description": "Chicken, cheddar, and buffalo sauce; no red sauce",
             "category_id": pizza_cat['id'],
-            "price": 12.95,
-            "image_url": "https://images.unsplash.com/photo-1600628421066-f6bda6a7b976",
-            "ingredients": ["Mozzarella cheese", "Tomato sauce", "Fresh basil"],
+            "price": 21.95,
+            "image_url": "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38",
+            "ingredients": ["Buffalo chicken", "Cheddar cheese", "Buffalo sauce"],
             "sizes": [
-                {"name": "Small 10\"", "price": 9.95},
-                {"name": "Medium 12\"", "price": 11.95},
-                {"name": "Large 14\"", "price": 12.95},
-                {"name": "X-Large 16\"", "price": 15.95}
+                {"name": "Medium 12\"", "price": 18.95},
+                {"name": "Large 14\"", "price": 21.95},
+                {"name": "Extra Large 18\"", "price": 23.95}
             ],
             "is_featured": True
         },
         {
             "name": "Meat Lovers Pizza",
-            "description": "Loaded with pepperoni, sausage, ham, and bacon",
+            "description": "Pepperoni, ham, and bacon",
             "category_id": pizza_cat['id'],
-            "price": 21.95,
+            "price": 22.95,
             "image_url": "https://images.unsplash.com/photo-1593504049359-74330189a345",
-            "ingredients": ["Pepperoni", "Italian sausage", "Ham", "Bacon", "Mozzarella cheese"],
+            "ingredients": ["Pepperoni", "Ham", "Bacon", "Mozzarella cheese"],
             "sizes": [
-                {"name": "Small 10\"", "price": 17.95},
                 {"name": "Medium 12\"", "price": 19.95},
-                {"name": "Large 14\"", "price": 21.95},
-                {"name": "X-Large 16\"", "price": 23.95}
+                {"name": "Large 14\"", "price": 22.95},
+                {"name": "Extra Large 18\"", "price": 24.95}
             ],
             "is_featured": True
         },
         {
-            "name": "Hawaiian Pizza",
-            "description": "Ham and pineapple on a classic cheese pizza",
+            "name": "Deluxe Pizza",
+            "description": "Pepperoni, sausage, ham, bacon, mushrooms, onions, green peppers, and black olives",
             "category_id": pizza_cat['id'],
-            "price": 17.95,
-            "image_url": "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38",
-            "ingredients": ["Ham", "Pineapple", "Mozzarella cheese", "Tomato sauce"],
+            "price": 23.95,
+            "ingredients": ["Pepperoni", "Sausage", "Ham", "Bacon", "Mushrooms", "Onions", "Green peppers", "Black olives"],
             "sizes": [
-                {"name": "Small 10\"", "price": 13.95},
-                {"name": "Medium 12\"", "price": 15.95},
-                {"name": "Large 14\"", "price": 17.95},
-                {"name": "X-Large 16\"", "price": 19.95}
+                {"name": "Medium 12\"", "price": 20.95},
+                {"name": "Large 14\"", "price": 23.95},
+                {"name": "Extra Large 18\"", "price": 26.95}
+            ]
+        },
+        {
+            "name": "Hawaiian Pizza",
+            "description": "Ham and pineapple",
+            "category_id": pizza_cat['id'],
+            "price": 21.95,
+            "image_url": "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38",
+            "ingredients": ["Ham", "Pineapple", "Mozzarella cheese"],
+            "sizes": [
+                {"name": "Medium 12\"", "price": 18.95},
+                {"name": "Large 14\"", "price": 21.95},
+                {"name": "Extra Large 18\"", "price": 23.95}
             ]
         },
         {
             "name": "BBQ Chicken Pizza",
-            "description": "Grilled chicken with BBQ sauce and red onions",
+            "description": "Chicken, BBQ sauce, and cheddar",
             "category_id": pizza_cat['id'],
-            "price": 18.95,
+            "price": 21.95,
             "image_url": "https://images.unsplash.com/photo-1513104890138-7c749659a591",
-            "ingredients": ["Grilled chicken", "BBQ sauce", "Red onions", "Mozzarella cheese"],
+            "ingredients": ["Grilled chicken", "BBQ sauce", "Cheddar cheese"],
             "sizes": [
-                {"name": "Small 10\"", "price": 14.95},
-                {"name": "Medium 12\"", "price": 16.95},
-                {"name": "Large 14\"", "price": 18.95},
-                {"name": "X-Large 16\"", "price": 20.95}
-            ]
-        },
-        {
-            "name": "Steak & Cheese Pizza",
-            "description": "Philly steak with peppers, onions and cheese",
-            "category_id": pizza_cat['id'],
-            "price": 19.95,
-            "ingredients": ["Philly steak", "Green peppers", "Onions", "Mozzarella cheese"],
-            "sizes": [
-                {"name": "Small 10\"", "price": 15.95},
-                {"name": "Medium 12\"", "price": 17.95},
-                {"name": "Large 14\"", "price": 19.95},
-                {"name": "X-Large 16\"", "price": 21.95}
-            ]
-        },
-        {
-            "name": "Deluxe Pizza",
-            "description": "Pepperoni, sausage, mushrooms, peppers, and onions",
-            "category_id": pizza_cat['id'],
-            "price": 20.95,
-            "ingredients": ["Pepperoni", "Sausage", "Mushrooms", "Peppers", "Onions"],
-            "sizes": [
-                {"name": "Small 10\"", "price": 16.95},
                 {"name": "Medium 12\"", "price": 18.95},
-                {"name": "Large 14\"", "price": 20.95},
-                {"name": "X-Large 16\"", "price": 22.95}
+                {"name": "Large 14\"", "price": 21.95},
+                {"name": "Extra Large 18\"", "price": 23.95}
             ]
         },
         {
             "name": "NY White Pizza",
-            "description": "Ricotta, mozzarella, and garlic on white sauce",
+            "description": "Ricotta, mozzarella, and fresh garlic; no red sauce",
             "category_id": pizza_cat['id'],
-            "price": 16.95,
-            "ingredients": ["Ricotta cheese", "Mozzarella", "Garlic", "White sauce"],
+            "price": 20.95,
+            "ingredients": ["Ricotta cheese", "Mozzarella", "Fresh garlic"],
             "sizes": [
-                {"name": "Small 10\"", "price": 12.95},
-                {"name": "Medium 12\"", "price": 14.95},
-                {"name": "Large 14\"", "price": 16.95},
-                {"name": "X-Large 16\"", "price": 18.95}
+                {"name": "Medium 12\"", "price": 18.95},
+                {"name": "Large 14\"", "price": 20.95},
+                {"name": "Extra Large 18\"", "price": 22.95}
+            ]
+        },
+        {
+            "name": "Roma Spinach Pizza",
+            "description": "Spinach, mozzarella, feta, and tomato",
+            "category_id": pizza_cat['id'],
+            "price": 22.95,
+            "ingredients": ["Spinach", "Mozzarella", "Feta cheese", "Tomato"],
+            "sizes": [
+                {"name": "Medium 12\"", "price": 19.95},
+                {"name": "Large 14\"", "price": 22.95},
+                {"name": "Extra Large 18\"", "price": 24.95}
+            ]
+        },
+        {
+            "name": "Primavera Pizza",
+            "description": "Broccoli, spinach, tomato, onion, mushroom, and green pepper",
+            "category_id": pizza_cat['id'],
+            "price": 22.95,
+            "ingredients": ["Broccoli", "Spinach", "Tomato", "Onion", "Mushroom", "Green pepper"],
+            "sizes": [
+                {"name": "Medium 12\"", "price": 19.95},
+                {"name": "Large 14\"", "price": 22.95},
+                {"name": "Extra Large 18\"", "price": 24.95}
+            ]
+        },
+        {
+            "name": "Lasagna Pizza",
+            "description": "Ricotta, meatballs, mozzarella, and red sauce",
+            "category_id": pizza_cat['id'],
+            "price": 21.95,
+            "ingredients": ["Ricotta cheese", "Meatballs", "Mozzarella", "Red sauce"],
+            "sizes": [
+                {"name": "Medium 12\"", "price": 18.95},
+                {"name": "Large 14\"", "price": 21.95},
+                {"name": "Extra Large 18\"", "price": 23.95}
+            ]
+        },
+        {
+            "name": "Stuffed Meat Pizza",
+            "description": "Pepperoni, sausage, ham, and meatball",
+            "category_id": pizza_cat['id'],
+            "price": 25.95,
+            "ingredients": ["Pepperoni", "Sausage", "Ham", "Meatball"],
+            "sizes": [
+                {"name": "Medium 12\"", "price": 22.95},
+                {"name": "Large 14\"", "price": 25.95},
+                {"name": "Extra Large 18\"", "price": 27.95}
+            ]
+        },
+        {
+            "name": "Stuffed Veggie Pizza",
+            "description": "Broccoli, spinach, and mushroom",
+            "category_id": pizza_cat['id'],
+            "price": 25.95,
+            "ingredients": ["Broccoli", "Spinach", "Mushroom"],
+            "sizes": [
+                {"name": "Medium 12\"", "price": 22.95},
+                {"name": "Large 14\"", "price": 25.95},
+                {"name": "Extra Large 18\"", "price": 27.95}
+            ]
+        },
+        {
+            "name": "Stuffed Chicken Pizza",
+            "description": "Chicken, tomato, bacon, cheddar, and ranch",
+            "category_id": pizza_cat['id'],
+            "price": 25.95,
+            "ingredients": ["Chicken", "Tomato", "Bacon", "Cheddar cheese", "Ranch"],
+            "sizes": [
+                {"name": "Medium 12\"", "price": 22.95},
+                {"name": "Large 14\"", "price": 25.95},
+                {"name": "Extra Large 18\"", "price": 27.95}
             ]
         },
         
