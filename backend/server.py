@@ -676,22 +676,15 @@ async def initialize_sample_data():
             "price": 4.00,
             "ingredients": ["Pizza dough", "Garlic", "Herbs", "Olive oil"]
         },
-        {
-            "name": "Garlic Knots with Sauce",
-            "description": "Homemade garlic knots with marinara",
-            "category_id": appetizers_cat['id'],
-            "price": 3.99,
-            "ingredients": ["Pizza dough", "Garlic", "Herbs", "Marinara sauce"]
-        },
         
-        # WINGS
+        # WINGS - CORRECT PRICES
         {
             "name": "Jumbo Wings (6 pieces)",
-            "description": "Large crispy wings with your choice of sauce",
+            "description": "Large crispy wings served with ranch or blue cheese",
             "category_id": wings_cat['id'],
             "price": 10.95,
             "image_url": "https://images.unsplash.com/photo-1608039829572-78524f79c4c7",
-            "ingredients": ["Chicken wings", "Choice of sauce"]
+            "ingredients": ["Chicken wings", "Choice of sauce", "Ranch or blue cheese"]
         },
         {
             "name": "Jumbo Wings (12 pieces)",
