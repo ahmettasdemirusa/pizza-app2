@@ -401,14 +401,14 @@ async def initialize_sample_data():
     
     # Create complete product data
     products_data = [
-        # PIZZAS (CORRECT SIZES: Medium, Large, Extra Large)
+        # PIZZAS - CORRECT PRICES AND INGREDIENTS
         {
             "name": "NY Cheese Pizza",
-            "description": "Classic New York style cheese pizza with our signature sauce and mozzarella",
+            "description": "Classic cheese pizza",
             "category_id": pizza_cat['id'],
-            "price": 18.95,  # Large price as default
-            "image_url": "https://images.unsplash.com/photo-1600628421066-f6bda6a7b976",
-            "ingredients": ["Mozzarella cheese", "Tomato sauce", "Fresh basil"],
+            "price": 18.95,
+            "image_url": "https://images.unsplash.com/photo-1513104890138-7c749659a591",
+            "ingredients": ["Mozzarella cheese", "Tomato sauce"],
             "sizes": [
                 {"name": "Medium 12\"", "price": 16.95},
                 {"name": "Large 14\"", "price": 18.95},
