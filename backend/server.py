@@ -656,25 +656,25 @@ async def initialize_sample_data():
         # APPETIZERS - CORRECT PRICES
         {
             "name": "Mozzarella Sticks",
-            "description": "Golden fried mozzarella sticks (6 pieces)",
+            "description": "Golden fried mozzarella sticks served with marinara sauce",
             "category_id": appetizers_cat['id'],
             "price": 9.95,
             "image_url": "https://images.unsplash.com/photo-1541014741259-de529411b96a",
             "ingredients": ["Mozzarella cheese", "Breadcrumbs", "Marinara sauce"]
         },
         {
-            "name": "Fried Ravioli",
-            "description": "Crispy fried cheese ravioli with marinara",
+            "name": "Fried Cheese Ravioli",
+            "description": "Crispy fried cheese ravioli served with marinara sauce",
             "category_id": appetizers_cat['id'],
-            "price": 7.50,
+            "price": 8.95,
             "ingredients": ["Cheese ravioli", "Breadcrumbs", "Marinara sauce"]
         },
         {
-            "name": "Garlic Bread",
-            "description": "Fresh bread with garlic and herbs",
+            "name": "Garlic Knots (2)",
+            "description": "Fresh garlic knots",
             "category_id": appetizers_cat['id'],
-            "price": 5.95,
-            "ingredients": ["Italian bread", "Garlic", "Herbs", "Butter"]
+            "price": 4.00,
+            "ingredients": ["Pizza dough", "Garlic", "Herbs", "Olive oil"]
         },
         {
             "name": "Garlic Knots with Sauce",
