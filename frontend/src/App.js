@@ -1699,10 +1699,13 @@ const AdminPage = () => {
         ...newProduct,
         price: parseFloat(newProduct.price),
         ingredients: newProduct.ingredients.filter(ing => ing.trim()),
-        sizes: newProduct.sizes.filter(size => size.name && size.price)
+        sizes: newProduct.sizes.filter(size => size.name && size.price).map(size => ({
+          name: size.name,
+          price: parseFloat(size.price)
+        }))
       };
 
-      if (isEditingProduct) {
+      if (isEditingProduct && selectedProduct) {
         await axios.put(`${API}/products/${selectedProduct.id}`, productData);
         toast.success('Product updated successfully');
       } else {
@@ -1724,7 +1727,8 @@ const AdminPage = () => {
         is_featured: false
       });
     } catch (error) {
-      toast.error('Failed to save product');
+      console.error('Product submit error:', error);
+      toast.error('Failed to save product: ' + (error.response?.data?.detail || error.message));
     }
   };
 
