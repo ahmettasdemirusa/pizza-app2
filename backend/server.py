@@ -652,57 +652,8 @@ async def initialize_sample_data():
             "image_url": "https://images.unsplash.com/photo-1563245738-9169ff58eccf",
             "ingredients": ["Spaghetti", "Ground beef", "Tomato sauce", "Italian herbs"]
         },
-        {
-            "name": "Homemade Veggie Lasagna",
-            "description": "Layers of pasta with fresh vegetables and cheese",
-            "category_id": pasta_cat['id'],
-            "price": 13.95,
-            "ingredients": ["Fresh vegetables", "Pasta sheets", "Ricotta", "Mozzarella", "Spinach"]
-        },
-        {
-            "name": "Chicken Marsala",
-            "description": "Tender chicken breast in marsala wine sauce",
-            "category_id": pasta_cat['id'],
-            "price": 18.95,
-            "ingredients": ["Chicken breast", "Marsala wine", "Mushrooms", "Cream sauce"]
-        },
-        {
-            "name": "Chicken Francese",
-            "description": "Lightly battered chicken in lemon butter sauce",
-            "category_id": pasta_cat['id'],
-            "price": 17.95,
-            "ingredients": ["Chicken breast", "Lemon", "Butter", "White wine", "Capers"]
-        },
-        {
-            "name": "Fettuccine Alfredo",
-            "description": "Classic creamy alfredo pasta",
-            "category_id": pasta_cat['id'],
-            "price": 14.95,
-            "ingredients": ["Fettuccine pasta", "Cream sauce", "Parmesan cheese", "Butter"]
-        },
-        {
-            "name": "Fettuccine Alfredo w/Chicken",
-            "description": "Creamy alfredo pasta with grilled chicken",
-            "category_id": pasta_cat['id'],
-            "price": 18.95,
-            "ingredients": ["Fettuccine pasta", "Grilled chicken", "Cream sauce", "Parmesan"]
-        },
-        {
-            "name": "Chicken Parmigiana Pasta",
-            "description": "Breaded chicken with marinara and mozzarella over pasta",
-            "category_id": pasta_cat['id'],
-            "price": 15.95,
-            "ingredients": ["Breaded chicken", "Marinara sauce", "Mozzarella", "Pasta"]
-        },
-        {
-            "name": "Shrimp Scampi",
-            "description": "Shrimp sautéed in garlic, white wine, and butter",
-            "category_id": pasta_cat['id'],
-            "price": 19.95,
-            "ingredients": ["Shrimp", "Garlic", "White wine", "Butter", "Pasta"]
-        },
         
-        # APPETIZERS
+        # APPETIZERS - CORRECT PRICES
         {
             "name": "Mozzarella Sticks",
             "description": "Golden fried mozzarella sticks (6 pieces)",
