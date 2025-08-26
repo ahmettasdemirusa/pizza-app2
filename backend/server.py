@@ -602,9 +602,10 @@ async def initialize_sample_data():
         },
         {
             "name": "Stuffed Veggie Pizza",
-            "description": "Broccoli, spinach, and mushroom",
+            "description": "Broccoli, spinach, mushroom",
             "category_id": pizza_cat['id'],
             "price": 25.95,
+            "image_url": "https://images.unsplash.com/photo-1565299507177-b0ac66763828",
             "ingredients": ["Broccoli", "Spinach", "Mushroom"],
             "sizes": [
                 {"name": "Medium 12\"", "price": 22.95},
