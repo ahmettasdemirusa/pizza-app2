@@ -1036,7 +1036,19 @@ const AuthPage = () => {
       const response = await axios.post(`${API}${endpoint}`, formData);
       
       login(response.data.user, response.data.token);
-      toast.success(isLogin ? 'Welcome back!' : 'Account created successfully!');
+      
+      // Reset form
+      setFormData({
+        email: '',
+        password: '',
+        full_name: '',
+        phone: '',
+        address: ''
+      });
+      
+      // Redirect to menu or previous page
+      window.location.href = '/menu';
+      
     } catch (error) {
       toast.error(error.response?.data?.detail || 'Something went wrong');
     } finally {
