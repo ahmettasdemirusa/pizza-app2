@@ -511,9 +511,10 @@ async def initialize_sample_data():
         },
         {
             "name": "Roma Spinach Pizza",
-            "description": "Spinach, mozzarella, feta, and tomato",
+            "description": "Spinach, mozzarella, feta, tomato",
             "category_id": pizza_cat['id'],
             "price": 22.95,
+            "image_url": "https://images.unsplash.com/photo-1604382354936-07c5b6f67ac3",
             "ingredients": ["Spinach", "Mozzarella", "Feta cheese", "Tomato"],
             "sizes": [
                 {"name": "Medium 12\"", "price": 19.95},
