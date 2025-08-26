@@ -251,6 +251,64 @@ async def update_product(product_id: str, product_data: ProductCreate, current_u
     await db.products.replace_one({'id': product_id}, product_dict)
     return updated_product
 
+@api_router.delete("/products/{product_id}")
+async def delete_product(product_id: str, current_user: User = Depends(get_current_user)):
+    if not current_user.is_admin:
+        raise HTTPException(status_code=403, detail="Admin access required")
+    
+    result = await db.products.delete_one({'id': product_id})
+    if result.deleted_count == 0:
+        raise HTTPException(status_code=404, detail="Product not found")
+    
+    return {"message": "Product deleted successfully"}
+
+@api_router.put("/products/{product_id}/availability")
+async def toggle_product_availability(product_id: str, is_available: bool, current_user: User = Depends(get_current_user)):
+    if not current_user.is_admin:
+        raise HTTPException(status_code=403, detail="Admin access required")
+    
+    result = await db.products.update_one(
+        {'id': product_id}, 
+        {'$set': {'is_available': is_available}}
+    )
+    
+    if result.matched_count == 0:
+        raise HTTPException(status_code=404, detail="Product not found")
+    
+    status = "available" if is_available else "suspended"
+    return {"message": f"Product {status} successfully"}
+
+# Categories CRUD
+@api_router.put("/categories/{category_id}", response_model=Category)
+async def update_category(category_id: str, category_data: CategoryCreate, current_user: User = Depends(get_current_user)):
+    if not current_user.is_admin:
+        raise HTTPException(status_code=403, detail="Admin access required")
+    
+    existing_category = await db.categories.find_one({'id': category_id})
+    if not existing_category:
+        raise HTTPException(status_code=404, detail="Category not found")
+    
+    updated_category = Category(**{**existing_category, **category_data.dict(), 'id': category_id})
+    category_dict = prepare_for_mongo(updated_category.dict())
+    await db.categories.replace_one({'id': category_id}, category_dict)
+    return updated_category
+
+@api_router.delete("/categories/{category_id}")
+async def delete_category(category_id: str, current_user: User = Depends(get_current_user)):
+    if not current_user.is_admin:
+        raise HTTPException(status_code=403, detail="Admin access required")
+    
+    # Check if category has products
+    product_count = await db.products.count_documents({'category_id': category_id})
+    if product_count > 0:
+        raise HTTPException(status_code=400, detail="Cannot delete category with existing products")
+    
+    result = await db.categories.delete_one({'id': category_id})
+    if result.deleted_count == 0:
+        raise HTTPException(status_code=404, detail="Category not found")
+    
+    return {"message": "Category deleted successfully"}
+
 # Orders endpoints
 @api_router.post("/orders", response_model=Order)
 async def create_order(order_data: OrderCreate, current_user: User = Depends(get_current_user)):
