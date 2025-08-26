@@ -1564,19 +1564,35 @@ const OrdersPage = () => {
   );
 };
 
-// Enhanced Admin Page
+// Enhanced Admin Page with Full Product Management
 const AdminPage = () => {
   const { user } = useAuth();
   const [orders, setOrders] = useState([]);
+  const [products, setProducts] = useState([]);
+  const [categories, setCategories] = useState([]);
   const [stats, setStats] = useState({
     totalOrders: 0,
     todayOrders: 0,
     revenue: 0
   });
+  const [selectedProduct, setSelectedProduct] = useState(null);
+  const [isEditingProduct, setIsEditingProduct] = useState(false);
+  const [newProduct, setNewProduct] = useState({
+    name: '',
+    description: '',
+    category_id: '',
+    price: '',
+    image_url: '',
+    ingredients: [],
+    sizes: [],
+    is_featured: false
+  });
 
   useEffect(() => {
     if (user?.is_admin) {
       fetchOrders();
+      fetchProducts();
+      fetchCategories();
     }
   }, [user]);
 
@@ -1603,6 +1619,26 @@ const AdminPage = () => {
     }
   };
 
+  const fetchProducts = async () => {
+    try {
+      const response = await axios.get(`${API}/products`);
+      setProducts(response.data);
+    } catch (error) {
+      console.error('Error fetching products:', error);
+      toast.error('Failed to load products');
+    }
+  };
+
+  const fetchCategories = async () => {
+    try {
+      const response = await axios.get(`${API}/categories`);
+      setCategories(response.data);
+    } catch (error) {
+      console.error('Error fetching categories:', error);
+      toast.error('Failed to load categories');
+    }
+  };
+
   const updateOrderStatus = async (orderId, status) => {
     try {
       await axios.put(`${API}/orders/${orderId}/status`, null, {
@@ -1613,6 +1649,126 @@ const AdminPage = () => {
     } catch (error) {
       toast.error('Failed to update order status');
     }
+  };
+
+  const toggleProductAvailability = async (productId, isAvailable) => {
+    try {
+      await axios.put(`${API}/products/${productId}/availability`, null, {
+        params: { is_available: !isAvailable }
+      });
+      toast.success(`Product ${!isAvailable ? 'activated' : 'suspended'} successfully`);
+      fetchProducts();
+    } catch (error) {
+      toast.error('Failed to update product status');
+    }
+  };
+
+  const deleteProduct = async (productId) => {
+    if (!window.confirm('Are you sure you want to delete this product?')) return;
+    
+    try {
+      await axios.delete(`${API}/products/${productId}`);
+      toast.success('Product deleted successfully');
+      fetchProducts();
+    } catch (error) {
+      toast.error('Failed to delete product');
+    }
+  };
+
+  const handleProductSubmit = async (e) => {
+    e.preventDefault();
+    
+    try {
+      const productData = {
+        ...newProduct,
+        price: parseFloat(newProduct.price),
+        ingredients: newProduct.ingredients.filter(ing => ing.trim()),
+        sizes: newProduct.sizes.filter(size => size.name && size.price)
+      };
+
+      if (isEditingProduct) {
+        await axios.put(`${API}/products/${selectedProduct.id}`, productData);
+        toast.success('Product updated successfully');
+      } else {
+        await axios.post(`${API}/products`, productData);
+        toast.success('Product created successfully');
+      }
+      
+      fetchProducts();
+      setSelectedProduct(null);
+      setIsEditingProduct(false);
+      setNewProduct({
+        name: '',
+        description: '',
+        category_id: '',
+        price: '',
+        image_url: '',
+        ingredients: [],
+        sizes: [],
+        is_featured: false
+      });
+    } catch (error) {
+      toast.error('Failed to save product');
+    }
+  };
+
+  const startEditProduct = (product) => {
+    setSelectedProduct(product);
+    setIsEditingProduct(true);
+    setNewProduct({
+      name: product.name,
+      description: product.description,
+      category_id: product.category_id,
+      price: product.price.toString(),
+      image_url: product.image_url || '',
+      ingredients: product.ingredients || [],
+      sizes: product.sizes || [],
+      is_featured: product.is_featured
+    });
+  };
+
+  const addIngredient = () => {
+    setNewProduct(prev => ({
+      ...prev,
+      ingredients: [...prev.ingredients, '']
+    }));
+  };
+
+  const updateIngredient = (index, value) => {
+    setNewProduct(prev => ({
+      ...prev,
+      ingredients: prev.ingredients.map((ing, i) => i === index ? value : ing)
+    }));
+  };
+
+  const removeIngredient = (index) => {
+    setNewProduct(prev => ({
+      ...prev,
+      ingredients: prev.ingredients.filter((_, i) => i !== index)
+    }));
+  };
+
+  const addSize = () => {
+    setNewProduct(prev => ({
+      ...prev,
+      sizes: [...prev.sizes, { name: '', price: 0 }]
+    }));
+  };
+
+  const updateSize = (index, field, value) => {
+    setNewProduct(prev => ({
+      ...prev,
+      sizes: prev.sizes.map((size, i) => 
+        i === index ? { ...size, [field]: field === 'price' ? parseFloat(value) || 0 : value } : size
+      )
+    }));
+  };
+
+  const removeSize = (index) => {
+    setNewProduct(prev => ({
+      ...prev,
+      sizes: prev.sizes.filter((_, i) => i !== index)
+    }));
   };
 
   if (!user?.is_admin) {
@@ -1630,7 +1786,7 @@ const AdminPage = () => {
     <div className="container mx-auto px-4 py-8">
       <div className="mb-8">
         <h1 className="text-3xl font-bold text-gray-800 mb-2">Admin Dashboard</h1>
-        <p className="text-gray-600">Manage orders and monitor restaurant performance</p>
+        <p className="text-gray-600">Manage orders, products, and monitor restaurant performance</p>
       </div>
 
       {/* Stats Cards */}
@@ -1679,9 +1835,10 @@ const AdminPage = () => {
       </div>
       
       <Tabs defaultValue="orders" className="space-y-6">
-        <TabsList className="grid w-full grid-cols-2">
-          <TabsTrigger value="orders">Recent Orders</TabsTrigger>
+        <TabsList className="grid w-full grid-cols-3">
+          <TabsTrigger value="orders">Orders</TabsTrigger>
           <TabsTrigger value="products">Products</TabsTrigger>
+          <TabsTrigger value="add-product">Add Product</TabsTrigger>
         </TabsList>
         
         <TabsContent value="orders" className="space-y-4">
@@ -1741,12 +1898,239 @@ const AdminPage = () => {
         
         <TabsContent value="products">
           <Card className="border-0 shadow-lg">
-            <CardContent className="pt-6">
-              <div className="text-center py-12">
-                <ChefHat className="h-16 w-16 text-gray-300 mx-auto mb-4" />
-                <p className="text-gray-600 text-lg">Product management coming soon...</p>
-                <p className="text-gray-500">Add, edit, and manage your menu items</p>
+            <CardHeader>
+              <CardTitle>Product Management</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="grid gap-4">
+                {products.map((product) => (
+                  <div key={product.id} className="flex items-center justify-between p-4 border rounded-lg">
+                    <div className="flex items-center space-x-4">
+                      <img
+                        src={product.image_url || "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38"}
+                        alt={product.name}
+                        className="w-16 h-16 object-cover rounded"
+                      />
+                      <div>
+                        <h3 className="font-semibold">{product.name}</h3>
+                        <p className="text-sm text-gray-600">${product.price}</p>
+                        <div className="flex items-center space-x-2">
+                          <Badge variant={product.is_available ? "default" : "secondary"}>
+                            {product.is_available ? "Available" : "Suspended"}
+                          </Badge>
+                          {product.is_featured && (
+                            <Badge className="bg-yellow-100 text-yellow-800">Featured</Badge>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div className="flex items-center space-x-2">
+                      <Button
+                        size="sm"
+                        variant="outline"
+                        onClick={() => startEditProduct(product)}
+                      >
+                        Edit
+                      </Button>
+                      <Button
+                        size="sm"
+                        variant={product.is_available ? "secondary" : "default"}
+                        onClick={() => toggleProductAvailability(product.id, product.is_available)}
+                      >
+                        {product.is_available ? "Suspend" : "Activate"}
+                      </Button>
+                      <Button
+                        size="sm"
+                        variant="destructive"
+                        onClick={() => deleteProduct(product.id)}
+                      >
+                        Delete
+                      </Button>
+                    </div>
+                  </div>
+                ))}
               </div>
+            </CardContent>
+          </Card>
+        </TabsContent>
+
+        <TabsContent value="add-product">
+          <Card className="border-0 shadow-lg">
+            <CardHeader>
+              <CardTitle>{isEditingProduct ? 'Edit Product' : 'Add New Product'}</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <form onSubmit={handleProductSubmit} className="space-y-6">
+                <div className="grid md:grid-cols-2 gap-6">
+                  <div>
+                    <Label htmlFor="name">Product Name *</Label>
+                    <Input
+                      id="name"
+                      value={newProduct.name}
+                      onChange={(e) => setNewProduct({...newProduct, name: e.target.value})}
+                      required
+                      className="mt-2"
+                    />
+                  </div>
+
+                  <div>
+                    <Label htmlFor="price">Base Price *</Label>
+                    <Input
+                      id="price"
+                      type="number"
+                      step="0.01"
+                      value={newProduct.price}
+                      onChange={(e) => setNewProduct({...newProduct, price: e.target.value})}
+                      required
+                      className="mt-2"
+                    />
+                  </div>
+
+                  <div>
+                    <Label htmlFor="category">Category *</Label>
+                    <Select
+                      value={newProduct.category_id}
+                      onValueChange={(value) => setNewProduct({...newProduct, category_id: value})}
+                    >
+                      <SelectTrigger className="mt-2">
+                        <SelectValue placeholder="Select category" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {categories.map((category) => (
+                          <SelectItem key={category.id} value={category.id}>
+                            {category.name}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+
+                  <div>
+                    <Label htmlFor="image_url">Image URL</Label>
+                    <Input
+                      id="image_url"
+                      value={newProduct.image_url}
+                      onChange={(e) => setNewProduct({...newProduct, image_url: e.target.value})}
+                      className="mt-2"
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <Label htmlFor="description">Description</Label>
+                  <Textarea
+                    id="description"
+                    value={newProduct.description}
+                    onChange={(e) => setNewProduct({...newProduct, description: e.target.value})}
+                    className="mt-2"
+                    rows={3}
+                  />
+                </div>
+
+                {/* Ingredients */}
+                <div>
+                  <div className="flex items-center justify-between mb-2">
+                    <Label>Ingredients</Label>
+                    <Button type="button" size="sm" onClick={addIngredient}>
+                      <Plus className="h-4 w-4" />
+                    </Button>
+                  </div>
+                  <div className="space-y-2">
+                    {newProduct.ingredients.map((ingredient, index) => (
+                      <div key={index} className="flex items-center space-x-2">
+                        <Input
+                          value={ingredient}
+                          onChange={(e) => updateIngredient(index, e.target.value)}
+                          placeholder="Enter ingredient"
+                        />
+                        <Button
+                          type="button"
+                          size="sm"
+                          variant="outline"
+                          onClick={() => removeIngredient(index)}
+                        >
+                          <Minus className="h-4 w-4" />
+                        </Button>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Sizes */}
+                <div>
+                  <div className="flex items-center justify-between mb-2">
+                    <Label>Size Options (For Pizzas)</Label>
+                    <Button type="button" size="sm" onClick={addSize}>
+                      <Plus className="h-4 w-4" />
+                    </Button>
+                  </div>
+                  <div className="space-y-2">
+                    {newProduct.sizes.map((size, index) => (
+                      <div key={index} className="flex items-center space-x-2">
+                        <Input
+                          value={size.name}
+                          onChange={(e) => updateSize(index, 'name', e.target.value)}
+                          placeholder="Size name (e.g., Medium 12\")"
+                        />
+                        <Input
+                          type="number"
+                          step="0.01"
+                          value={size.price}
+                          onChange={(e) => updateSize(index, 'price', e.target.value)}
+                          placeholder="Price"
+                        />
+                        <Button
+                          type="button"
+                          size="sm"
+                          variant="outline"
+                          onClick={() => removeSize(index)}
+                        >
+                          <Minus className="h-4 w-4" />
+                        </Button>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="flex items-center space-x-2">
+                  <input
+                    type="checkbox"
+                    id="is_featured"
+                    checked={newProduct.is_featured}
+                    onChange={(e) => setNewProduct({...newProduct, is_featured: e.target.checked})}
+                  />
+                  <Label htmlFor="is_featured">Featured Product</Label>
+                </div>
+
+                <div className="flex space-x-4">
+                  <Button type="submit" className="bg-red-600 hover:bg-red-700">
+                    {isEditingProduct ? 'Update Product' : 'Add Product'}
+                  </Button>
+                  {isEditingProduct && (
+                    <Button
+                      type="button"
+                      variant="outline"
+                      onClick={() => {
+                        setIsEditingProduct(false);
+                        setSelectedProduct(null);
+                        setNewProduct({
+                          name: '',
+                          description: '',
+                          category_id: '',
+                          price: '',
+                          image_url: '',
+                          ingredients: [],
+                          sizes: [],
+                          is_featured: false
+                        });
+                      }}
+                    >
+                      Cancel
+                    </Button>
+                  )}
+                </div>
+              </form>
             </CardContent>
           </Card>
         </TabsContent>
