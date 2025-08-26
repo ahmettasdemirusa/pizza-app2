@@ -445,12 +445,38 @@ async def initialize_sample_data():
             "is_featured": True
         },
         {
+            "name": "NY White Pizza",
+            "description": "Ricotta, mozzarella, fresh garlic; no red sauce",
+            "category_id": pizza_cat['id'],
+            "price": 20.95,
+            "image_url": "https://images.unsplash.com/photo-1571066811602-716837d681de",
+            "ingredients": ["Ricotta cheese", "Mozzarella", "Fresh garlic"],
+            "sizes": [
+                {"name": "Medium 12\"", "price": 18.95},
+                {"name": "Large 14\"", "price": 20.95},
+                {"name": "Extra Large 18\"", "price": 22.95}
+            ]
+        },
+        {
             "name": "Hawaiian Pizza",
             "description": "Ham and pineapple",
             "category_id": pizza_cat['id'],
             "price": 21.95,
+            "image_url": "https://images.unsplash.com/photo-1574071318508-1cdbab80d002",
+            "ingredients": ["Ham", "Pineapple"],
+            "sizes": [
+                {"name": "Medium 12\"", "price": 18.95},
+                {"name": "Large 14\"", "price": 21.95},
+                {"name": "Extra Large 18\"", "price": 23.95}
+            ]
+        },
+        {
+            "name": "Buffalo Chicken Pizza",
+            "description": "Chicken, cheddar, buffalo sauce; no red sauce",
+            "category_id": pizza_cat['id'],
+            "price": 21.95,
             "image_url": "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38",
-            "ingredients": ["Ham", "Pineapple", "Mozzarella cheese"],
+            "ingredients": ["Chicken", "Cheddar cheese", "Buffalo sauce"],
             "sizes": [
                 {"name": "Medium 12\"", "price": 18.95},
                 {"name": "Large 14\"", "price": 21.95},
@@ -459,27 +485,15 @@ async def initialize_sample_data():
         },
         {
             "name": "BBQ Chicken Pizza",
-            "description": "Chicken, BBQ sauce, and cheddar",
+            "description": "Chicken, BBQ sauce, cheddar; no red sauce",
             "category_id": pizza_cat['id'],
             "price": 21.95,
-            "image_url": "https://images.unsplash.com/photo-1513104890138-7c749659a591",
-            "ingredients": ["Grilled chicken", "BBQ sauce", "Cheddar cheese"],
+            "image_url": "https://images.unsplash.com/photo-1506354666786-959d6d497f1a",
+            "ingredients": ["Chicken", "BBQ sauce", "Cheddar cheese"],
             "sizes": [
                 {"name": "Medium 12\"", "price": 18.95},
                 {"name": "Large 14\"", "price": 21.95},
                 {"name": "Extra Large 18\"", "price": 23.95}
-            ]
-        },
-        {
-            "name": "NY White Pizza",
-            "description": "Ricotta, mozzarella, and fresh garlic; no red sauce",
-            "category_id": pizza_cat['id'],
-            "price": 20.95,
-            "ingredients": ["Ricotta cheese", "Mozzarella", "Fresh garlic"],
-            "sizes": [
-                {"name": "Medium 12\"", "price": 18.95},
-                {"name": "Large 14\"", "price": 20.95},
-                {"name": "Extra Large 18\"", "price": 22.95}
             ]
         },
         {
