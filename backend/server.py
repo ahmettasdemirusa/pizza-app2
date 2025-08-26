@@ -562,10 +562,37 @@ async def initialize_sample_data():
             ]
         },
         {
+            "name": "Eggplant Parmigiana Pizza",
+            "description": "Eggplant, mozzarella, ricotta, marinara sauce",
+            "category_id": pizza_cat['id'],
+            "price": 20.95,
+            "image_url": "https://images.unsplash.com/photo-1571066811602-716837d681de",
+            "ingredients": ["Eggplant", "Mozzarella", "Ricotta cheese", "Marinara sauce"],
+            "sizes": [
+                {"name": "Medium 12\"", "price": 18.95},
+                {"name": "Large 14\"", "price": 20.95},
+                {"name": "Extra Large 18\"", "price": 22.95}
+            ]
+        },
+        {
+            "name": "Steak & Cheese Pizza",
+            "description": "Steak, mushrooms, green peppers, cheddar",
+            "category_id": pizza_cat['id'],
+            "price": 22.95,
+            "image_url": "https://images.unsplash.com/photo-1628840042765-356cda07504e",
+            "ingredients": ["Steak", "Mushrooms", "Green peppers", "Cheddar cheese"],
+            "sizes": [
+                {"name": "Medium 12\"", "price": 19.95},
+                {"name": "Large 14\"", "price": 22.95},
+                {"name": "Extra Large 18\"", "price": 24.95}
+            ]
+        },
+        {
             "name": "Stuffed Meat Pizza",
-            "description": "Pepperoni, sausage, ham, and meatball",
+            "description": "Pepperoni, sausage, ham, meatball",
             "category_id": pizza_cat['id'],
             "price": 25.95,
+            "image_url": "https://images.unsplash.com/photo-1595708684082-a173bb3a06c5",
             "ingredients": ["Pepperoni", "Sausage", "Ham", "Meatball"],
             "sizes": [
                 {"name": "Medium 12\"", "price": 22.95},
