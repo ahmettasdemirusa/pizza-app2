@@ -497,6 +497,19 @@ async def initialize_sample_data():
             ]
         },
         {
+            "name": "The Greek Pizza",
+            "description": "Gyro meat, tomato, red onion, olives, feta; no tomato sauce",
+            "category_id": pizza_cat['id'],
+            "price": 21.95,
+            "image_url": "https://images.unsplash.com/photo-1571997478779-2adcbbe9ab2f",
+            "ingredients": ["Gyro meat", "Tomato", "Red onion", "Olives", "Feta cheese"],
+            "sizes": [
+                {"name": "Medium 12\"", "price": 18.95},
+                {"name": "Large 14\"", "price": 21.95},
+                {"name": "Extra Large 18\"", "price": 23.95}
+            ]
+        },
+        {
             "name": "Roma Spinach Pizza",
             "description": "Spinach, mozzarella, feta, and tomato",
             "category_id": pizza_cat['id'],
