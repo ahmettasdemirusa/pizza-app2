@@ -89,6 +89,7 @@ const AuthProvider = ({ children }) => {
     setUser(null);
     setToken(null);
     localStorage.removeItem('token');
+    localStorage.removeItem('user'); // Remove user data
     delete axios.defaults.headers.common['Authorization'];
     toast.success('Logged out successfully');
   };
