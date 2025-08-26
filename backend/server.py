@@ -298,10 +298,9 @@ async def update_order_status(order_id: str, status: str, current_user: User = D
 # Initialize complete menu data
 @api_router.post("/init-data")
 async def initialize_sample_data():
-    # Check if data already exists
-    category_count = await db.categories.count_documents({})
-    if category_count > 0:
-        return {"message": "Sample data already exists"}
+    # Clear existing data
+    await db.categories.delete_many({})
+    await db.products.delete_many({})
     
     # Create all categories
     categories_data = [
