@@ -524,9 +524,10 @@ async def initialize_sample_data():
         },
         {
             "name": "Primavera Pizza",
-            "description": "Broccoli, spinach, tomato, onion, mushroom, and green pepper",
+            "description": "Broccoli, spinach, tomato, onion, mushroom, green pepper",
             "category_id": pizza_cat['id'],
             "price": 22.95,
+            "image_url": "https://images.unsplash.com/photo-1565299507177-b0ac66763828",
             "ingredients": ["Broccoli", "Spinach", "Tomato", "Onion", "Mushroom", "Green pepper"],
             "sizes": [
                 {"name": "Medium 12\"", "price": 19.95},
