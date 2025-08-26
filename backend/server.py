@@ -615,9 +615,10 @@ async def initialize_sample_data():
         },
         {
             "name": "Stuffed Chicken Pizza",
-            "description": "Chicken, tomato, bacon, cheddar, and ranch",
+            "description": "Chicken, tomato, bacon, cheddar, ranch",
             "category_id": pizza_cat['id'],
             "price": 25.95,
+            "image_url": "https://images.unsplash.com/photo-1593560708920-61dd98c46a4e",
             "ingredients": ["Chicken", "Tomato", "Bacon", "Cheddar cheese", "Ranch"],
             "sizes": [
                 {"name": "Medium 12\"", "price": 22.95},
