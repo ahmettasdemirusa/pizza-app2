@@ -748,87 +748,34 @@ async def initialize_sample_data():
             "ingredients": ["Steak", "Mushrooms", "Peppers", "Onions"]
         },
         
-        # HOT SUBS
-        {
-            "name": "Meatball Parmigiana Sub",
-            "description": "Homemade meatballs with marinara and mozzarella",
-            "category_id": hot_subs_cat['id'],
-            "price": 13.95,
-            "ingredients": ["Meatballs", "Marinara sauce", "Mozzarella cheese", "Sub roll"]
-        },
-        {
-            "name": "Chicken Parmigiana Sub",
-            "description": "Breaded chicken with marinara and mozzarella",
-            "category_id": hot_subs_cat['id'],
-            "price": 13.95,
-            "ingredients": ["Breaded chicken", "Marinara sauce", "Mozzarella cheese"]
-        },
-        {
-            "name": "Steak & Cheese Sub",
-            "description": "Philly steak with onions, peppers, and cheese",
-            "category_id": hot_subs_cat['id'],
-            "price": 13.95,
-            "ingredients": ["Philly steak", "Onions", "Green peppers", "Cheese"]
-        },
-        
-        # COLD SUBS
-        {
-            "name": "Ham Sub",
-            "description": "Sliced ham with lettuce, tomato, and mayo",
-            "category_id": cold_subs_cat['id'],
-            "price": 12.95,
-            "ingredients": ["Ham", "Lettuce", "Tomato", "Mayo", "Sub roll"]
-        },
-        {
-            "name": "Italian Sub",
-            "description": "Ham, salami, and pepperoni with Italian dressing",
-            "category_id": cold_subs_cat['id'],
-            "price": 13.95,
-            "ingredients": ["Ham", "Salami", "Pepperoni", "Italian dressing", "Vegetables"]
-        },
-        
         # CALZONES
         {
             "name": "Cheese Calzone",
             "description": "Mozzarella and ricotta cheese in pizza dough",
             "category_id": calzone_cat['id'],
-            "price": 11.75,
+            "price": 11.00,
             "ingredients": ["Mozzarella", "Ricotta cheese", "Pizza dough"]
         },
+        
+        # STROMBOLIS
         {
-            "name": "Pepperoni Calzone",
-            "description": "Pepperoni with mozzarella and ricotta",
-            "category_id": calzone_cat['id'],
+            "name": "Veggie Stromboli", 
+            "description": "Mozzarella cheese, spinach, mushroom, feta cheese",
+            "category_id": stromboli_cat['id'],
             "price": 12.75,
-            "ingredients": ["Pepperoni", "Mozzarella", "Ricotta cheese"]
+            "ingredients": ["Mozzarella cheese", "Spinach", "Mushroom", "Feta cheese"]
         },
         
         # GYROS
         {
             "name": "Lamb Gyro with Fries",
-            "description": "Traditional lamb gyro with tzatziki and fries",
+            "description": "Traditional lamb gyro served with fries",
             "category_id": gyros_cat['id'],
             "price": 13.95,
             "ingredients": ["Lamb", "Tzatziki sauce", "Onions", "Tomatoes", "French fries"]
         },
         
-        # SIDES
-        {
-            "name": "French Fries",
-            "description": "Golden crispy french fries",
-            "category_id": sides_cat['id'],
-            "price": 3.50,
-            "ingredients": ["Potatoes", "Salt"]
-        },
-        {
-            "name": "Onion Rings",
-            "description": "Beer battered onion rings",
-            "category_id": sides_cat['id'],
-            "price": 6.95,
-            "ingredients": ["Onions", "Beer batter"]
-        },
-        
-        # DESSERTS
+        # DESSERTS - CORRECT PRICES
         {
             "name": "Cannoli",
             "description": "Traditional Italian pastry with sweet ricotta filling",
