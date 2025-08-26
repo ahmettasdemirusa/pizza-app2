@@ -688,48 +688,41 @@ async def initialize_sample_data():
         },
         {
             "name": "Jumbo Wings (12 pieces)",
-            "description": "Large crispy wings with your choice of sauce",
+            "description": "Large crispy wings served with ranch or blue cheese",
             "category_id": wings_cat['id'],
             "price": 18.95,
-            "ingredients": ["Chicken wings", "Choice of sauce"]
+            "ingredients": ["Chicken wings", "Choice of sauce", "Ranch or blue cheese"]
         },
         {
             "name": "Jumbo Wings (20 pieces)",
-            "description": "Large crispy wings with your choice of sauce",
+            "description": "Large crispy wings served with ranch or blue cheese",
             "category_id": wings_cat['id'],
             "price": 30.95,
-            "ingredients": ["Chicken wings", "Choice of sauce"]
+            "ingredients": ["Chicken wings", "Choice of sauce", "Ranch or blue cheese"]
         },
         
-        # SALADS
+        # SALADS - CORRECT PRICES  
         {
-            "name": "Garden Salad",
-            "description": "Fresh mixed greens with vegetables",
+            "name": "Antipasto Salad",
+            "description": "Lettuce, tomatoes, cucumber, red onions, black olives, pepperoni, ham, salami",
             "category_id": salads_cat['id'],
-            "price": 13.95,
+            "price": 14.95,
             "image_url": "https://images.unsplash.com/photo-1512621776951-a57141f2eefd",
-            "ingredients": ["Mixed greens", "Tomatoes", "Cucumbers", "Onions", "Peppers"]
-        },
-        {
-            "name": "Caesar Salad",
-            "description": "Romaine lettuce with caesar dressing and croutons",
-            "category_id": salads_cat['id'],
-            "price": 13.95,
-            "ingredients": ["Romaine lettuce", "Caesar dressing", "Croutons", "Parmesan"]
+            "ingredients": ["Lettuce", "Tomatoes", "Cucumber", "Red onions", "Black olives", "Pepperoni", "Ham", "Salami"]
         },
         {
             "name": "Greek Salad",
-            "description": "Traditional Greek salad with feta cheese and olives",
+            "description": "Lettuce, tomatoes, cucumber, red onions, kalamata olives, feta cheese, pepperoncini",
             "category_id": salads_cat['id'],
             "price": 13.95,
-            "ingredients": ["Mixed greens", "Feta cheese", "Olives", "Tomatoes", "Onions"]
+            "ingredients": ["Lettuce", "Tomatoes", "Cucumber", "Red onions", "Kalamata olives", "Feta cheese", "Pepperoncini"]
         },
         {
-            "name": "Grilled Chicken Salad",
-            "description": "Garden salad topped with grilled chicken",
+            "name": "Side Salad",
+            "description": "Small garden salad",
             "category_id": salads_cat['id'],
-            "price": 15.95,
-            "ingredients": ["Mixed greens", "Grilled chicken", "Vegetables", "Dressing"]
+            "price": 7.95,
+            "ingredients": ["Mixed greens", "Tomatoes", "Cucumbers"]
         },
         
         # BURGERS
