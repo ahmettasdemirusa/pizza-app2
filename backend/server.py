@@ -849,7 +849,21 @@ async def initialize_sample_data():
     
     await db.products.insert_many(products)
     
-    return {"message": "Complete menu data initialized successfully"}
+    # Create admin user
+    admin_password = bcrypt.hashpw('admin123'.encode('utf-8'), bcrypt.gensalt())
+    admin_user = User(
+        email='admin@pizzashop.com',
+        full_name='Admin User',
+        phone='(470) 545-0095',
+        is_admin=True
+    )
+    
+    admin_dict = prepare_for_mongo(admin_user.dict())
+    admin_dict['password'] = admin_password.decode('utf-8')
+    
+    await db.users.insert_one(admin_dict)
+    
+    return {"message": "Complete menu data initialized successfully. Admin login: admin@pizzashop.com / admin123"}
 
 # Include the router in the main app
 app.include_router(api_router)
