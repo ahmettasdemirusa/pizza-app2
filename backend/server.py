@@ -295,7 +295,7 @@ async def update_order_status(order_id: str, status: str, current_user: User = D
     
     return {"message": "Order status updated successfully"}
 
-# Initialize sample data
+# Initialize complete menu data
 @api_router.post("/init-data")
 async def initialize_sample_data():
     # Check if data already exists
@@ -303,14 +303,21 @@ async def initialize_sample_data():
     if category_count > 0:
         return {"message": "Sample data already exists"}
     
-    # Create categories
+    # Create all categories
     categories_data = [
         {"name": "Pizza", "description": "Our delicious handcrafted pizzas", "sort_order": 1, "image_url": "https://images.unsplash.com/photo-1593504049359-74330189a345"},
         {"name": "Pasta", "description": "Authentic Italian pasta dishes", "sort_order": 2, "image_url": "https://images.unsplash.com/photo-1563245738-9169ff58eccf"},
-        {"name": "Calzone", "description": "Stuffed pizza pockets", "sort_order": 3},
-        {"name": "Wings", "description": "Crispy chicken wings", "sort_order": 4},
-        {"name": "Salads", "description": "Fresh garden salads", "sort_order": 5},
-        {"name": "Desserts", "description": "Sweet treats", "sort_order": 6}
+        {"name": "Appetizers", "description": "Start your meal right", "sort_order": 3, "image_url": "https://images.unsplash.com/photo-1541014741259-de529411b96a"},
+        {"name": "Wings", "description": "Crispy chicken wings with your favorite sauce", "sort_order": 4, "image_url": "https://images.unsplash.com/photo-1608039829572-78524f79c4c7"},
+        {"name": "Salads", "description": "Fresh garden salads", "sort_order": 5, "image_url": "https://images.unsplash.com/photo-1512621776951-a57141f2eefd"},
+        {"name": "Burgers", "description": "Juicy grilled burgers", "sort_order": 6, "image_url": "https://images.unsplash.com/photo-1568901346375-23c9450c58cd"},
+        {"name": "Hot Subs", "description": "Hot submarine sandwiches", "sort_order": 7, "image_url": "https://images.unsplash.com/photo-1539252554453-80ab65ce3586"},
+        {"name": "Cold Subs", "description": "Fresh cold submarine sandwiches", "sort_order": 8, "image_url": "https://images.unsplash.com/photo-1555072956-7758afb20e8f"},
+        {"name": "Calzone", "description": "Stuffed pizza pockets", "sort_order": 9, "image_url": "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b"},
+        {"name": "Stromboli", "description": "Rolled and baked pizza", "sort_order": 10, "image_url": "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b"},
+        {"name": "Gyros", "description": "Mediterranean style gyros", "sort_order": 11, "image_url": "https://images.unsplash.com/photo-1621996346565-e3dbc691d8e9"},
+        {"name": "Sides", "description": "Perfect sides for your meal", "sort_order": 12, "image_url": "https://images.unsplash.com/photo-1573080496219-bb080dd4f877"},
+        {"name": "Desserts", "description": "Sweet treats to finish your meal", "sort_order": 13, "image_url": "https://images.unsplash.com/photo-1551024601-bec78aea704b"}
     ]
     
     categories = []
@@ -320,16 +327,28 @@ async def initialize_sample_data():
     
     await db.categories.insert_many(categories)
     
-    # Get pizza category ID
-    pizza_category = await db.categories.find_one({"name": "Pizza"})
-    pasta_category = await db.categories.find_one({"name": "Pasta"})
+    # Get category IDs
+    pizza_cat = await db.categories.find_one({"name": "Pizza"})
+    pasta_cat = await db.categories.find_one({"name": "Pasta"})
+    appetizers_cat = await db.categories.find_one({"name": "Appetizers"})
+    wings_cat = await db.categories.find_one({"name": "Wings"})
+    salads_cat = await db.categories.find_one({"name": "Salads"})
+    burgers_cat = await db.categories.find_one({"name": "Burgers"})
+    hot_subs_cat = await db.categories.find_one({"name": "Hot Subs"})
+    cold_subs_cat = await db.categories.find_one({"name": "Cold Subs"})
+    calzone_cat = await db.categories.find_one({"name": "Calzone"})
+    stromboli_cat = await db.categories.find_one({"name": "Stromboli"})
+    gyros_cat = await db.categories.find_one({"name": "Gyros"})
+    sides_cat = await db.categories.find_one({"name": "Sides"})
+    desserts_cat = await db.categories.find_one({"name": "Desserts"})
     
-    # Create sample products
+    # Create complete product data
     products_data = [
+        # PIZZAS
         {
             "name": "Buffalo Chicken Pizza",
             "description": "Spicy buffalo chicken with red onions and mozzarella cheese",
-            "category_id": pizza_category['id'],
+            "category_id": pizza_cat['id'],
             "price": 18.95,
             "image_url": "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38",
             "ingredients": ["Buffalo chicken", "Red onions", "Mozzarella cheese", "Buffalo sauce"],
@@ -344,7 +363,7 @@ async def initialize_sample_data():
         {
             "name": "NY Cheese Pizza",
             "description": "Classic New York style cheese pizza with our signature sauce",
-            "category_id": pizza_category['id'],
+            "category_id": pizza_cat['id'],
             "price": 12.95,
             "image_url": "https://images.unsplash.com/photo-1600628421066-f6bda6a7b976",
             "ingredients": ["Mozzarella cheese", "Tomato sauce", "Fresh basil"],
@@ -359,29 +378,358 @@ async def initialize_sample_data():
         {
             "name": "Meat Lovers Pizza",
             "description": "Loaded with pepperoni, sausage, ham, and bacon",
-            "category_id": pizza_category['id'],
+            "category_id": pizza_cat['id'],
             "price": 21.95,
+            "image_url": "https://images.unsplash.com/photo-1593504049359-74330189a345",
             "ingredients": ["Pepperoni", "Italian sausage", "Ham", "Bacon", "Mozzarella cheese"],
             "sizes": [
                 {"name": "Small 10\"", "price": 17.95},
                 {"name": "Medium 12\"", "price": 19.95},
                 {"name": "Large 14\"", "price": 21.95},
                 {"name": "X-Large 16\"", "price": 23.95}
+            ],
+            "is_featured": True
+        },
+        {
+            "name": "Hawaiian Pizza",
+            "description": "Ham and pineapple on a classic cheese pizza",
+            "category_id": pizza_cat['id'],
+            "price": 17.95,
+            "image_url": "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38",
+            "ingredients": ["Ham", "Pineapple", "Mozzarella cheese", "Tomato sauce"],
+            "sizes": [
+                {"name": "Small 10\"", "price": 13.95},
+                {"name": "Medium 12\"", "price": 15.95},
+                {"name": "Large 14\"", "price": 17.95},
+                {"name": "X-Large 16\"", "price": 19.95}
             ]
         },
         {
+            "name": "BBQ Chicken Pizza",
+            "description": "Grilled chicken with BBQ sauce and red onions",
+            "category_id": pizza_cat['id'],
+            "price": 18.95,
+            "image_url": "https://images.unsplash.com/photo-1513104890138-7c749659a591",
+            "ingredients": ["Grilled chicken", "BBQ sauce", "Red onions", "Mozzarella cheese"],
+            "sizes": [
+                {"name": "Small 10\"", "price": 14.95},
+                {"name": "Medium 12\"", "price": 16.95},
+                {"name": "Large 14\"", "price": 18.95},
+                {"name": "X-Large 16\"", "price": 20.95}
+            ]
+        },
+        {
+            "name": "Steak & Cheese Pizza",
+            "description": "Philly steak with peppers, onions and cheese",
+            "category_id": pizza_cat['id'],
+            "price": 19.95,
+            "ingredients": ["Philly steak", "Green peppers", "Onions", "Mozzarella cheese"],
+            "sizes": [
+                {"name": "Small 10\"", "price": 15.95},
+                {"name": "Medium 12\"", "price": 17.95},
+                {"name": "Large 14\"", "price": 19.95},
+                {"name": "X-Large 16\"", "price": 21.95}
+            ]
+        },
+        {
+            "name": "Deluxe Pizza",
+            "description": "Pepperoni, sausage, mushrooms, peppers, and onions",
+            "category_id": pizza_cat['id'],
+            "price": 20.95,
+            "ingredients": ["Pepperoni", "Sausage", "Mushrooms", "Peppers", "Onions"],
+            "sizes": [
+                {"name": "Small 10\"", "price": 16.95},
+                {"name": "Medium 12\"", "price": 18.95},
+                {"name": "Large 14\"", "price": 20.95},
+                {"name": "X-Large 16\"", "price": 22.95}
+            ]
+        },
+        {
+            "name": "NY White Pizza",
+            "description": "Ricotta, mozzarella, and garlic on white sauce",
+            "category_id": pizza_cat['id'],
+            "price": 16.95,
+            "ingredients": ["Ricotta cheese", "Mozzarella", "Garlic", "White sauce"],
+            "sizes": [
+                {"name": "Small 10\"", "price": 12.95},
+                {"name": "Medium 12\"", "price": 14.95},
+                {"name": "Large 14\"", "price": 16.95},
+                {"name": "X-Large 16\"", "price": 18.95}
+            ]
+        },
+        
+        # PASTA
+        {
             "name": "Homemade Meat Lasagna",
             "description": "Layers of pasta, meat sauce, and three cheeses",
-            "category_id": pasta_category['id'],
+            "category_id": pasta_cat['id'],
             "price": 14.95,
-            "ingredients": ["Ground beef", "Pasta sheets", "Ricotta", "Mozzarella", "Parmesan"]
+            "image_url": "https://images.unsplash.com/photo-1621996346565-e3dbc691d8e9",
+            "ingredients": ["Ground beef", "Pasta sheets", "Ricotta", "Mozzarella", "Parmesan"],
+            "is_featured": True
+        },
+        {
+            "name": "Homemade Veggie Lasagna",
+            "description": "Layers of pasta with fresh vegetables and cheese",
+            "category_id": pasta_cat['id'],
+            "price": 13.95,
+            "ingredients": ["Fresh vegetables", "Pasta sheets", "Ricotta", "Mozzarella", "Spinach"]
         },
         {
             "name": "Chicken Marsala",
             "description": "Tender chicken breast in marsala wine sauce",
-            "category_id": pasta_category['id'],
+            "category_id": pasta_cat['id'],
             "price": 18.95,
             "ingredients": ["Chicken breast", "Marsala wine", "Mushrooms", "Cream sauce"]
+        },
+        {
+            "name": "Chicken Francese",
+            "description": "Lightly battered chicken in lemon butter sauce",
+            "category_id": pasta_cat['id'],
+            "price": 17.95,
+            "ingredients": ["Chicken breast", "Lemon", "Butter", "White wine", "Capers"]
+        },
+        {
+            "name": "Fettuccine Alfredo",
+            "description": "Classic creamy alfredo pasta",
+            "category_id": pasta_cat['id'],
+            "price": 14.95,
+            "ingredients": ["Fettuccine pasta", "Cream sauce", "Parmesan cheese", "Butter"]
+        },
+        {
+            "name": "Fettuccine Alfredo w/Chicken",
+            "description": "Creamy alfredo pasta with grilled chicken",
+            "category_id": pasta_cat['id'],
+            "price": 18.95,
+            "ingredients": ["Fettuccine pasta", "Grilled chicken", "Cream sauce", "Parmesan"]
+        },
+        {
+            "name": "Chicken Parmigiana Pasta",
+            "description": "Breaded chicken with marinara and mozzarella over pasta",
+            "category_id": pasta_cat['id'],
+            "price": 15.95,
+            "ingredients": ["Breaded chicken", "Marinara sauce", "Mozzarella", "Pasta"]
+        },
+        {
+            "name": "Shrimp Scampi",
+            "description": "Shrimp sautéed in garlic, white wine, and butter",
+            "category_id": pasta_cat['id'],
+            "price": 19.95,
+            "ingredients": ["Shrimp", "Garlic", "White wine", "Butter", "Pasta"]
+        },
+        
+        # APPETIZERS
+        {
+            "name": "Mozzarella Sticks",
+            "description": "Golden fried mozzarella sticks (6 pieces)",
+            "category_id": appetizers_cat['id'],
+            "price": 9.95,
+            "image_url": "https://images.unsplash.com/photo-1541014741259-de529411b96a",
+            "ingredients": ["Mozzarella cheese", "Breadcrumbs", "Marinara sauce"]
+        },
+        {
+            "name": "Fried Ravioli",
+            "description": "Crispy fried cheese ravioli with marinara",
+            "category_id": appetizers_cat['id'],
+            "price": 7.50,
+            "ingredients": ["Cheese ravioli", "Breadcrumbs", "Marinara sauce"]
+        },
+        {
+            "name": "Garlic Bread",
+            "description": "Fresh bread with garlic and herbs",
+            "category_id": appetizers_cat['id'],
+            "price": 5.95,
+            "ingredients": ["Italian bread", "Garlic", "Herbs", "Butter"]
+        },
+        {
+            "name": "Garlic Knots with Sauce",
+            "description": "Homemade garlic knots with marinara",
+            "category_id": appetizers_cat['id'],
+            "price": 3.99,
+            "ingredients": ["Pizza dough", "Garlic", "Herbs", "Marinara sauce"]
+        },
+        
+        # WINGS
+        {
+            "name": "Jumbo Wings (6 pieces)",
+            "description": "Large crispy wings with your choice of sauce",
+            "category_id": wings_cat['id'],
+            "price": 10.95,
+            "image_url": "https://images.unsplash.com/photo-1608039829572-78524f79c4c7",
+            "ingredients": ["Chicken wings", "Choice of sauce"]
+        },
+        {
+            "name": "Jumbo Wings (12 pieces)",
+            "description": "Large crispy wings with your choice of sauce",
+            "category_id": wings_cat['id'],
+            "price": 18.95,
+            "ingredients": ["Chicken wings", "Choice of sauce"]
+        },
+        {
+            "name": "Jumbo Wings (20 pieces)",
+            "description": "Large crispy wings with your choice of sauce",
+            "category_id": wings_cat['id'],
+            "price": 30.95,
+            "ingredients": ["Chicken wings", "Choice of sauce"]
+        },
+        
+        # SALADS
+        {
+            "name": "Garden Salad",
+            "description": "Fresh mixed greens with vegetables",
+            "category_id": salads_cat['id'],
+            "price": 13.95,
+            "image_url": "https://images.unsplash.com/photo-1512621776951-a57141f2eefd",
+            "ingredients": ["Mixed greens", "Tomatoes", "Cucumbers", "Onions", "Peppers"]
+        },
+        {
+            "name": "Caesar Salad",
+            "description": "Romaine lettuce with caesar dressing and croutons",
+            "category_id": salads_cat['id'],
+            "price": 13.95,
+            "ingredients": ["Romaine lettuce", "Caesar dressing", "Croutons", "Parmesan"]
+        },
+        {
+            "name": "Greek Salad",
+            "description": "Traditional Greek salad with feta cheese and olives",
+            "category_id": salads_cat['id'],
+            "price": 13.95,
+            "ingredients": ["Mixed greens", "Feta cheese", "Olives", "Tomatoes", "Onions"]
+        },
+        {
+            "name": "Grilled Chicken Salad",
+            "description": "Garden salad topped with grilled chicken",
+            "category_id": salads_cat['id'],
+            "price": 15.95,
+            "ingredients": ["Mixed greens", "Grilled chicken", "Vegetables", "Dressing"]
+        },
+        
+        # BURGERS
+        {
+            "name": "Hamburger",
+            "description": "Classic beef burger with lettuce and tomato",
+            "category_id": burgers_cat['id'],
+            "price": 13.95,
+            "image_url": "https://images.unsplash.com/photo-1568901346375-23c9450c58cd",
+            "ingredients": ["Beef patty", "Lettuce", "Tomato", "Onion", "Pickle"]
+        },
+        {
+            "name": "Cheeseburger",
+            "description": "Classic beef burger with cheese",
+            "category_id": burgers_cat['id'],
+            "price": 14.95,
+            "ingredients": ["Beef patty", "Cheese", "Lettuce", "Tomato", "Onion"]
+        },
+        {
+            "name": "Double Burger",
+            "description": "Two beef patties with cheese and fixings",
+            "category_id": burgers_cat['id'],
+            "price": 17.95,
+            "ingredients": ["Two beef patties", "Cheese", "Lettuce", "Tomato", "Onion"]
+        },
+        
+        # HOT SUBS
+        {
+            "name": "Meatball Parmigiana Sub",
+            "description": "Homemade meatballs with marinara and mozzarella",
+            "category_id": hot_subs_cat['id'],
+            "price": 13.95,
+            "ingredients": ["Meatballs", "Marinara sauce", "Mozzarella cheese", "Sub roll"]
+        },
+        {
+            "name": "Chicken Parmigiana Sub",
+            "description": "Breaded chicken with marinara and mozzarella",
+            "category_id": hot_subs_cat['id'],
+            "price": 13.95,
+            "ingredients": ["Breaded chicken", "Marinara sauce", "Mozzarella cheese"]
+        },
+        {
+            "name": "Steak & Cheese Sub",
+            "description": "Philly steak with onions, peppers, and cheese",
+            "category_id": hot_subs_cat['id'],
+            "price": 13.95,
+            "ingredients": ["Philly steak", "Onions", "Green peppers", "Cheese"]
+        },
+        
+        # COLD SUBS
+        {
+            "name": "Ham Sub",
+            "description": "Sliced ham with lettuce, tomato, and mayo",
+            "category_id": cold_subs_cat['id'],
+            "price": 12.95,
+            "ingredients": ["Ham", "Lettuce", "Tomato", "Mayo", "Sub roll"]
+        },
+        {
+            "name": "Italian Sub",
+            "description": "Ham, salami, and pepperoni with Italian dressing",
+            "category_id": cold_subs_cat['id'],
+            "price": 13.95,
+            "ingredients": ["Ham", "Salami", "Pepperoni", "Italian dressing", "Vegetables"]
+        },
+        
+        # CALZONES
+        {
+            "name": "Cheese Calzone",
+            "description": "Mozzarella and ricotta cheese in pizza dough",
+            "category_id": calzone_cat['id'],
+            "price": 11.75,
+            "ingredients": ["Mozzarella", "Ricotta cheese", "Pizza dough"]
+        },
+        {
+            "name": "Pepperoni Calzone",
+            "description": "Pepperoni with mozzarella and ricotta",
+            "category_id": calzone_cat['id'],
+            "price": 12.75,
+            "ingredients": ["Pepperoni", "Mozzarella", "Ricotta cheese"]
+        },
+        
+        # GYROS
+        {
+            "name": "Lamb Gyro with Fries",
+            "description": "Traditional lamb gyro with tzatziki and fries",
+            "category_id": gyros_cat['id'],
+            "price": 13.95,
+            "ingredients": ["Lamb", "Tzatziki sauce", "Onions", "Tomatoes", "French fries"]
+        },
+        
+        # SIDES
+        {
+            "name": "French Fries",
+            "description": "Golden crispy french fries",
+            "category_id": sides_cat['id'],
+            "price": 3.50,
+            "ingredients": ["Potatoes", "Salt"]
+        },
+        {
+            "name": "Onion Rings",
+            "description": "Beer battered onion rings",
+            "category_id": sides_cat['id'],
+            "price": 6.95,
+            "ingredients": ["Onions", "Beer batter"]
+        },
+        
+        # DESSERTS
+        {
+            "name": "Cannoli",
+            "description": "Traditional Italian pastry with sweet ricotta filling",
+            "category_id": desserts_cat['id'],
+            "price": 5.95,
+            "image_url": "https://images.unsplash.com/photo-1551024601-bec78aea704b",
+            "ingredients": ["Pastry shell", "Sweet ricotta", "Chocolate chips"]
+        },
+        {
+            "name": "New York Cheesecake",
+            "description": "Classic creamy New York style cheesecake",
+            "category_id": desserts_cat['id'],
+            "price": 5.95,
+            "ingredients": ["Cream cheese", "Graham cracker crust", "Vanilla"]
+        },
+        {
+            "name": "Tiramisu",
+            "description": "Classic Italian coffee-flavored dessert",
+            "category_id": desserts_cat['id'],
+            "price": 6.95,
+            "ingredients": ["Ladyfingers", "Mascarpone", "Coffee", "Cocoa powder"]
         }
     ]
     
@@ -392,7 +740,7 @@ async def initialize_sample_data():
     
     await db.products.insert_many(products)
     
-    return {"message": "Sample data initialized successfully"}
+    return {"message": "Complete menu data initialized successfully"}
 
 # Include the router in the main app
 app.include_router(api_router)
