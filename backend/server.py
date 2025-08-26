@@ -627,15 +627,30 @@ async def initialize_sample_data():
             ]
         },
         
-        # PASTA
+        # PASTA - CORRECT PRICES
         {
             "name": "Homemade Meat Lasagna",
             "description": "Layers of pasta, meat sauce, and three cheeses",
             "category_id": pasta_cat['id'],
+            "price": 15.95,
+            "image_url": "https://images.unsplash.com/photo-1571997478779-2adcbbe9ab2f",
+            "ingredients": ["Ground beef", "Pasta sheets", "Ricotta", "Mozzarella", "Parmesan"]
+        },
+        {
+            "name": "Penne Alla Vodka",
+            "description": "Classic penne pasta in creamy vodka sauce",
+            "category_id": pasta_cat['id'],
             "price": 14.95,
             "image_url": "https://images.unsplash.com/photo-1621996346565-e3dbc691d8e9",
-            "ingredients": ["Ground beef", "Pasta sheets", "Ricotta", "Mozzarella", "Parmesan"],
-            "is_featured": True
+            "ingredients": ["Penne pasta", "Vodka sauce", "Cream", "Parmesan cheese"]
+        },
+        {
+            "name": "Spaghetti with Meat Sauce",
+            "description": "Classic spaghetti with homemade meat sauce",
+            "category_id": pasta_cat['id'],
+            "price": 17.95,
+            "image_url": "https://images.unsplash.com/photo-1563245738-9169ff58eccf",
+            "ingredients": ["Spaghetti", "Ground beef", "Tomato sauce", "Italian herbs"]
         },
         {
             "name": "Homemade Veggie Lasagna",
