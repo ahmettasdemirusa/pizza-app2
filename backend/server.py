@@ -725,28 +725,27 @@ async def initialize_sample_data():
             "ingredients": ["Mixed greens", "Tomatoes", "Cucumbers"]
         },
         
-        # BURGERS
+        # HOT SUBS - CORRECT PRICES
         {
-            "name": "Hamburger",
-            "description": "Classic beef burger with lettuce and tomato",
-            "category_id": burgers_cat['id'],
-            "price": 13.95,
-            "image_url": "https://images.unsplash.com/photo-1568901346375-23c9450c58cd",
-            "ingredients": ["Beef patty", "Lettuce", "Tomato", "Onion", "Pickle"]
+            "name": "Meatball Parmesan Sub",
+            "description": "Homemade meatballs with marinara and mozzarella",
+            "category_id": hot_subs_cat['id'],
+            "price": 5.95,
+            "ingredients": ["Meatballs", "Marinara sauce", "Mozzarella cheese", "Sub roll"]
         },
         {
-            "name": "Cheeseburger",
-            "description": "Classic beef burger with cheese",
-            "category_id": burgers_cat['id'],
-            "price": 14.95,
-            "ingredients": ["Beef patty", "Cheese", "Lettuce", "Tomato", "Onion"]
+            "name": "Chicken Parmesan Sub",
+            "description": "Breaded chicken with marinara and mozzarella",
+            "category_id": hot_subs_cat['id'],
+            "price": 5.95,
+            "ingredients": ["Breaded chicken", "Marinara sauce", "Mozzarella cheese"]
         },
         {
-            "name": "Double Burger",
-            "description": "Two beef patties with cheese and fixings",
-            "category_id": burgers_cat['id'],
-            "price": 17.95,
-            "ingredients": ["Two beef patties", "Cheese", "Lettuce", "Tomato", "Onion"]
+            "name": "Philly Steak Sub",
+            "description": "Steak, mushrooms, peppers, onions",
+            "category_id": hot_subs_cat['id'],
+            "price": 5.95,
+            "ingredients": ["Steak", "Mushrooms", "Peppers", "Onions"]
         },
         
         # HOT SUBS
