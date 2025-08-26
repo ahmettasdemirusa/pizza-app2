@@ -1657,13 +1657,13 @@ const AdminPage = () => {
 
   const updateOrderStatus = async (orderId, status) => {
     try {
-      await axios.put(`${API}/orders/${orderId}/status`, null, {
-        params: { status }
-      });
-      toast.success('Order status updated successfully');
+      console.log('Updating order status:', orderId, status); // Debug log
+      await axios.put(`${API}/orders/${orderId}/status?status=${status}`);
+      toast.success(`Order status updated to ${status}`);
       fetchOrders();
     } catch (error) {
-      toast.error('Failed to update order status');
+      console.error('Update order status error:', error);
+      toast.error('Failed to update order status: ' + (error.response?.data?.detail || error.message));
     }
   };
 
