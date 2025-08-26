@@ -1063,7 +1063,11 @@ const AuthPage = () => {
       });
       
       // Redirect to menu or previous page
-      window.location.href = '/menu';
+      if (response.data.user.is_admin) {
+        window.location.href = '/admin';
+      } else {
+        window.location.href = '/menu';
+      }
       
     } catch (error) {
       toast.error(error.response?.data?.detail || 'Something went wrong');
