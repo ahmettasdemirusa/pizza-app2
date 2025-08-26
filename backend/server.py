@@ -536,10 +536,24 @@ async def initialize_sample_data():
             ]
         },
         {
-            "name": "Lasagna Pizza",
-            "description": "Ricotta, meatballs, mozzarella, and red sauce",
+            "name": "Italian Chicken Pizza",
+            "description": "Chicken, roma tomato, fresh garlic; no tomato sauce",
             "category_id": pizza_cat['id'],
             "price": 21.95,
+            "image_url": "https://images.unsplash.com/photo-1593560708920-61dd98c46a4e",
+            "ingredients": ["Chicken", "Roma tomato", "Fresh garlic"],
+            "sizes": [
+                {"name": "Medium 12\"", "price": 18.95},
+                {"name": "Large 14\"", "price": 21.95},
+                {"name": "Extra Large 18\"", "price": 23.95}
+            ]
+        },
+        {
+            "name": "Lasagna Pizza",
+            "description": "Ricotta, meatballs, mozzarella, red sauce",
+            "category_id": pizza_cat['id'],
+            "price": 21.95,
+            "image_url": "https://images.unsplash.com/photo-1571997478779-2adcbbe9ab2f",
             "ingredients": ["Ricotta cheese", "Meatballs", "Mozzarella", "Red sauce"],
             "sizes": [
                 {"name": "Medium 12\"", "price": 18.95},
